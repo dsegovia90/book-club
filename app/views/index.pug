@@ -1,4 +1,11 @@
 include includes/head.pug
 include includes/nav.pug
 
-h1.title Hello World!
+.container
+	.columns
+		.column.is-10.is-offset-1.has-text-centered
+			br
+			h1.title Home
+			if message
+				p= message
+			a.button.is-light(href='/mybooks') My books

@@ -9,15 +9,21 @@ section.hero.is-dark.is-bold
 					if user
 						a= 'Hello ' + user.local.email
 					else
-						a= 'Log in to RSVP'
+						a= 'Log in please!'
 				.nav-right
 					#nav-menu.nav-right.nav-menu.nav-mobile
 						a(class='nav-item' href='/') Home
 						if !user
-							a(class='nav-item' href='/auth/github') Login 
+							a(class='nav-item' href='/login') Login 
+								i.fa.fa-github(aria-hidden='true')
+							a(class='nav-item' href='/signup') Signup
 								i.fa.fa-github(aria-hidden='true')
 						else
-							a(class='nav-item' href='logout') Logout
+							a(class='nav-item' href='/mybooks') My Books
+								i.fa.fa-github(aria-hidden='true')
+							a(class='nav-item' href='/addbook') Add Book
+								i.fa.fa-github(aria-hidden='true')
+							a(class='nav-item' href='/logout') Logout
 								i.fa.fa-github(aria-hidden='true')
 		.hero-body
 			.container

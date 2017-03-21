@@ -1,0 +1,47 @@
+include includes/head.pug
+include includes/nav.pug
+
+.container
+	.columns
+		.column.is-10.is-offset-1.has-text-centered
+			br
+			h1.title Add Books
+			if message
+				p= message
+			form(action='/addbook' method='post')
+				.field
+					label.label Search Book
+					input(type='text' name='book' required)
+				br
+				.field
+					input.button(type='submit' value='Search')
+	.columns
+		.column.is-10.is-offset-1.has-text-centered
+			if books
+				each book, index in books
+					-var addBookLink = 'addbook/' + book.id
+					if book.description
+						if book.description.length > 400
+							-var bookDescr = book.description.slice(0,400) + '...'
+						else
+							-var bookDescr = book.description.slice(0,400)
+					else
+						-var bookDescr = 'No description.'
+					.box
+						article.media
+							.media-left
+								figure.image
+									img(src=book.thumbnail alt='')
+							.media-content
+								.content
+									p
+										strong= book.title
+										if book.authors
+											small= ' by ' + book.authors
+										else
+											small= ' by Anonymous.'
+										br
+										= bookDescr
+								nav.level.is-mobile
+									.level-left
+										a.level-item.button(href=addBookLink)= 'Add Book'

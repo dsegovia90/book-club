@@ -1,0 +1,42 @@
+include includes/head.pug
+include includes/nav.pug
+
+
+.container
+	.columns
+		.column.is-10.is-offset-1.has-text-centered
+			br
+			h1.title My Books
+			a.button.is-light(href='/addbook') Add Book
+	.columns
+		.column.is-10.is-offset-1.has-text-centered
+			if message.length > 0
+				.notification.is-success
+					button.delete
+					= message
+			if myBooks
+				each book, index in myBooks
+					if book.description
+						if book.description.length > 400
+							-var bookDescr = book.description.slice(0,400) + '...'
+						else
+							-var bookDescr = book.description.slice(0,400)
+					else
+						-var bookDescr = 'No description.'
+					.box
+						article.media
+							.media-left
+								figure.image
+									img(src=book.thumbnail alt='')
+							.media-content
+								.content
+									p
+										strong= book.title
+										if book.authors
+											small= ' by ' + book.authors
+										else
+											small= ' by Anonymous.'
+										br
+										= bookDescr
+								nav.level.is-mobile
+									.level-left

@@ -1,4 +1,11 @@
+var BookHandler = require('../controllers/booksController.js')
+var bookHandler = new BookHandler()
+
 module.exports = function(app, passport){
+
+																//Functions
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 	//Check for loggin function
 	function isLoggedIn(req, res, next) {
@@ -10,6 +17,10 @@ module.exports = function(app, passport){
 		}
 	}
 
+																//Middleware
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
 	//Send user to views
 	app.use(function(req, res, next) {
 	  res.locals.user = req.user
@@ -20,6 +31,10 @@ module.exports = function(app, passport){
 	app.get('/', isLoggedIn, function(req, res){
 		res.render('index')
 	})
+
+																//Routes
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 	//Login route
 	app.get('/login', function(req, res){
@@ -39,7 +54,22 @@ module.exports = function(app, passport){
 		res.render('signup', { message: req.flash('signupMessage') })
 	})
 
+	//Logout route
+	app.get('/logout', isLoggedIn, function(req, res){
+		req.logout()
+		res.redirect('/')
+	})
 
+	app.get('/mybooks', isLoggedIn, bookHandler.myBooks)
+
+	app.get('/addbook', isLoggedIn, bookHandler.displaySearched)
+	app.get('/addbook/:id', isLoggedIn, bookHandler.addBook)
+	app.post('/addbook', isLoggedIn, bookHandler.search)
+
+
+																//Forms
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 	//Login form submit
 	app.post('/login', passport.authenticate('local-login', {

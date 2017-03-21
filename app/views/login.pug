@@ -1,0 +1,15 @@
+include includes/head.pug
+include includes/nav.pug
+
+h1.title Login
+if message
+	p= message
+form(action='/login' method='post')
+	.field
+		label.label Email
+		input(type='text' name='email')
+	.field
+		label.label Password
+		input(type='password' name='password')
+	.field
+		input(type='submit' value='Login')

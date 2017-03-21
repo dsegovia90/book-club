@@ -1,0 +1,31 @@
+section.hero.is-dark.is-bold
+		.hero-head
+			nav.nav
+				span#nav-toggle.nav-toggle.nav-mobile
+					span
+					span
+					span
+				.nav-left
+					if user
+						a= 'Hello ' + user.local.email
+					else
+						a= 'Log in to RSVP'
+				.nav-right
+					#nav-menu.nav-right.nav-menu.nav-mobile
+						a(class='nav-item' href='/') Home
+						if !user
+							a(class='nav-item' href='/auth/github') Login 
+								i.fa.fa-github(aria-hidden='true')
+						else
+							a(class='nav-item' href='logout') Logout
+								i.fa.fa-github(aria-hidden='true')
+		.hero-body
+			.container
+				a(href='/')
+					h1.title Book Trading App!
+				h2.subtitle Using Google Books API
+		.hero-foot
+			.container.has-text-right
+				p
+					small= 'Made by '
+						a(href='https://github.com/sego90' target='_blank') Daniel S.  

@@ -9,3 +9,26 @@ include includes/nav.pug
 			if message
 				p= message
 			a.button.is-light(href='/mybooks') My books
+if allBooks
+	.container
+		.columns.is-multiline
+			each book in allBooks
+				if book.description
+					if book.description.length > 100
+						-var bookDescr = book.description.slice(0,100) + '...'
+					else
+						-var bookDescr = book.description.slice(0,100)
+				.column.is-4
+					.card
+						.card-image
+							figure.image.thumbnail.has-text-centered
+								img(src=book.thumbnail alt='image')
+						.card-content
+							.media-content
+								p.title.is-4= book.title
+								p.subtitle.is-6= 'by ' + book.authors
+							.content
+								= bookDescr
+								br
+								small= 'Belongs to: '
+									a(href='#')= book.belongsTo

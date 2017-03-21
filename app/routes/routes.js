@@ -27,14 +27,12 @@ module.exports = function(app, passport){
 	  next()
 	})
 
-	//Home route
-	app.get('/', isLoggedIn, function(req, res){
-		res.render('index')
-	})
-
 																//Routes
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+
+	//Home route
+	app.get('/', isLoggedIn, bookHandler.displayAllBooks)
 
 	//Login route
 	app.get('/login', function(req, res){
@@ -64,7 +62,10 @@ module.exports = function(app, passport){
 
 	app.get('/addbook', isLoggedIn, bookHandler.displaySearched)
 	app.get('/addbook/:id', isLoggedIn, bookHandler.addBook)
-	app.post('/addbook', isLoggedIn, bookHandler.search)
+
+	app.get('/settings', isLoggedIn, userHandler.displaySettings)
+
+
 
 
 																//Forms
@@ -85,4 +86,6 @@ module.exports = function(app, passport){
         failureFlash : true // allow flash messages
     }));
 
+	//Search for books using the Google Books API
+	app.post('/addbook', isLoggedIn, bookHandler.search)
 }

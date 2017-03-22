@@ -6,8 +6,6 @@ include includes/nav.pug
 		.column.is-10.is-offset-1.has-text-centered
 			br
 			h1.title Add Books
-			if message
-				p= message
 			form(action='/addbook' method='post')
 				.field
 					label.label Search Book
@@ -44,4 +42,4 @@ include includes/nav.pug
 										= bookDescr
 								nav.level.is-mobile
 									.level-left
-										a.level-item.button(href=addBookLink)= 'Add Book'
+										a.level-item.button.is-success(href=addBookLink)= 'Add Book'

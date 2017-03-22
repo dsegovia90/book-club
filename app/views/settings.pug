@@ -1,0 +1,30 @@
+include includes/head.pug
+include includes/nav.pug
+
+.container
+	.columns
+		.column.is-10.is-offset-1.has-text-centered
+			br
+			h1.title Settings
+			if message.length > 0
+				.notification.is-success
+					button.delete
+					= message				
+			label.label Email
+			input(type='text' name='firstName' disabled value=user.local.email)
+			form(action='/settings' method='post')
+				.field
+					label.label First Name
+					input(type='text' name='firstName' value=user.firstName)
+				.field
+					label.label Last Name
+					input(type='text' name='lastName' value=user.lastName)
+				.field
+					label.label City
+					input(type='text' name='city' value=user.city)
+				.field
+					label.label State
+					input(type='text' name='state' value=user.state)
+				br
+				.field
+					input(type='submit' value='Update Settings')

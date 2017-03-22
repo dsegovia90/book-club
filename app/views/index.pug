@@ -6,13 +6,15 @@ include includes/nav.pug
 		.column.is-10.is-offset-1.has-text-centered
 			br
 			h1.title Home
-			if message
-				p= message
-			a.button.is-light(href='/mybooks') My books
+			if message.length > 0
+				.notification.is-info
+					button.delete
+					= message	
 if allBooks
 	.container
 		.columns.is-multiline
 			each book in allBooks
+				-var tradeLink = 'trade/' + book._id
 				if book.description
 					if book.description.length > 100
 						-var bookDescr = book.description.slice(0,100) + '...'
@@ -24,9 +26,14 @@ if allBooks
 							figure.image.thumbnail.has-text-centered
 								img(src=book.thumbnail alt='image')
 						.card-content
-							.media-content
-								p.title.is-4= book.title
-								p.subtitle.is-6= 'by ' + book.authors
+							.media
+								.media-content
+									p.title.is-4= book.title
+									p.subtitle.is-6= 'by ' + book.authors
+								if book.belongsTo != user.local.email
+									.media-right
+										a(title='Ask for Trade' href=tradeLink)
+											i.fa.fa-retweet(aria-hidden='true')
 							.content
 								= bookDescr
 								br

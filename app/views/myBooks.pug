@@ -7,7 +7,7 @@ include includes/nav.pug
 		.column.is-10.is-offset-1.has-text-centered
 			br
 			h1.title My Books
-			a.button.is-light(href='/addbook') Add Book
+			a.button.is-success(href='/addbook') Add Book
 	.columns
 		.column.is-10.is-offset-1.has-text-centered
 			if message.length > 0
@@ -40,3 +40,4 @@ include includes/nav.pug
 										= bookDescr
 								nav.level.is-mobile
 									.level-left
+										a.level-item.button.is-danger(href=addBookLink)= 'Delete Book'

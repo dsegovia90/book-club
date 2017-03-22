@@ -1,6 +1,9 @@
 var BookHandler = require('../controllers/booksController.js')
 var bookHandler = new BookHandler()
 
+var UserHandler = require('../controllers/usersController.js')
+var userHandler = new UserHandler()
+
 module.exports = function(app, passport){
 
 																//Functions
@@ -65,6 +68,10 @@ module.exports = function(app, passport){
 
 	app.get('/settings', isLoggedIn, userHandler.displaySettings)
 
+	app.get('/trade/:bookId', isLoggedIn, bookHandler.askTrade)
+	app.get('/trades', isLoggedIn, bookHandler.showTrades)
+	app.get('/trades/:accept?', isLoggedIn, bookHandler.confirmTrade)
+
 
 
 
@@ -88,4 +95,7 @@ module.exports = function(app, passport){
 
 	//Search for books using the Google Books API
 	app.post('/addbook', isLoggedIn, bookHandler.search)
+
+	//Update user Settings
+	app.post('/settings', isLoggedIn, userHandler.changeSettings)
 }

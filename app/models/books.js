@@ -11,7 +11,8 @@ var Book = new Schema({
 	description: String,
 	thumbnail: String,
 	moreInfo: String,
-	belongsTo: String
+	belongsTo: String,
+	tradeRequestUsers: Array
 
 })
 

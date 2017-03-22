@@ -30,10 +30,16 @@ if allBooks
 								.media-content
 									p.title.is-4= book.title
 									p.subtitle.is-6= 'by ' + book.authors
-								if book.belongsTo != user.local.email
+								if user
+									if book.belongsTo != user.local.email
+										.media-right
+											a(title='Ask for Trade' href=tradeLink)
+												i.fa.fa-retweet(aria-hidden='true')
+								else
 									.media-right
 										a(title='Ask for Trade' href=tradeLink)
 											i.fa.fa-retweet(aria-hidden='true')
+											
 							.content
 								= bookDescr
 								br

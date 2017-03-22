@@ -35,7 +35,7 @@ module.exports = function(app, passport){
 ///////////////////////////////////////////////////////////////////////////////////
 
 	//Home route
-	app.get('/', isLoggedIn, bookHandler.displayAllBooks)
+	app.get('/', bookHandler.displayAllBooks)
 
 	//Login route
 	app.get('/login', function(req, res){
